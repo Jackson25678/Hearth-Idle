@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href=".\assets\css\style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hearth Idle</title>
     <!-- Mediocre Games -->
 </head>
-<script src="script.js" charset="utf-8" type="text/javascript"></script>
+<script src=".\assets\js\script.js" charset="utf-8" type="text/javascript"></script>
 <body>
 
   <header>
@@ -16,21 +16,6 @@
   </header>
 
   <div class="main_battle_div">
-    <div class="player1_battle_info_div">
-      <div class="player1_battle_info_left_div" style="border:1px solid gray">
-        <div class="Player1HealthBar" data-label="10/10">
-          <span class="value" style="width:100%;"></span>
-        </div>
-      </div>
-      <div class="player1_battle_info_center_div" style="border:1px solid gray">
-        <h2 id="BattleInfoUsernameText" class="textwrapcenter">Player 1</h2>
-      </div>
-        <div class="player1_battle_info_right_div" style="border:1px solid gray">
-          <div class="Player1ManaBar" data-label="10/10">
-            <span class="value" style="width:100%;"></span>
-          </div>
-        </div>
-    </div>
     <div class="battle_enemy_div">
       <div class="battle_enemy_left_div" style="border:1px solid gray">
         <p style="text-align:center;">Enemy Stats</p>
@@ -52,10 +37,56 @@
         <button id="CollectLootButton"onclick="updatecount()">Collect</button>
       </p>
     </div>
+</div>
     <div class="party_container">
-        <div class="party_div" style="border:2px solid red">
-            <p>d</p>
+        <div class="player1_battle_info_div">
+             <div class="player1_battle_info_left_div" style="border:1px solid gray">
+            <div class="Player1HealthBar" data-label="10/10">
+                 <span class="value" style="width:100%;"></span>
+            </div>
+             </div>
+             <div class="player1_battle_info_center_div" style="border:1px solid gray">
+            <h2 id="BattleInfoUsernameText" class="textwrapcenter">Player 1</h2>
+             </div>
+            <div class="player1_battle_info_right_div" style="border:1px solid gray">
+                 <div class="Player1ManaBar" data-label="10/10">
+                     <span class="value" style="width:100%;"></span>
+                 </div>
+            </div>
         </div>
+
+        <div class="player2_battle_info_div">
+            <div class="player2_battle_info_left_div" style="border:1px solid gray">
+                <div class="Player2HealthBar" data-label="10/10">
+                    <span class="value" style="width:100%;"></span>
+                </div>
+            </div>
+            <div class="player2_battle_info_center_div" style="border:1px solid gray">
+                <h2 id="BattleInfoUsernameText" class="textwrapcenter">Player 2</h2>
+            </div>
+            <div class="player2_battle_info_right_div" style="border:1px solid gray">
+                <div class="Player2ManaBar" data-label="10/10">
+                    <span class="value" style="width:100%;"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="player3_battle_info_div">
+            <div class="player3_battle_info_left_div" style="border:1px solid gray">
+                <div class="Player2HealthBar" data-label="10/10">
+                    <span class="value" style="width:100%;"></span>
+                </div>
+            </div>
+            <div class="player3_battle_info_center_div" style="border:1px solid gray">
+                <h2 id="BattleInfoUsernameText" class="textwrapcenter">Player 3</h2>
+            </div>
+            <div class="player3_battle_info_right_div" style="border:1px solid gray">
+                <div class="Player3ManaBar" data-label="10/10">
+                    <span class="value" style="width:100%;"></span>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>

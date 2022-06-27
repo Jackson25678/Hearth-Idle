@@ -1,3 +1,8 @@
+body{
+    margin:0;
+    padding:0;
+}
+
 .textwrapcenter {
     text-align:center;
 }
@@ -12,10 +17,6 @@
 
 #CollectLootText {
     text-align:center;
-}
-
-.party_container {
-    width:100%;
 }
 
 .Player1HealthBar {
@@ -41,6 +42,29 @@
   height: 100%;
 }
 
+.Player2HealthBar {
+  height: 1.5em;
+  width: 100%;
+  background-color: #c9c9c9;
+  position: relative;
+  font-weight:bold;
+  float: left;
+}
+.Player2HealthBar:before {
+  content: attr(data-label);
+  font-size: 1em;
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  left: 0;
+  right: 0;
+}
+.Player2HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
 .Player1ManaBar {
   height: 1.5em;
   width: 100%;
@@ -60,6 +84,54 @@
   right: 0;
 }
 .Player1ManaBar .value {
+  background-color: #1663be;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player2ManaBar {
+  height: 1.5em;
+  width: 100%;
+  background-color: #c9c9c9;
+  position: relative;
+  font-weight:bold;
+  float: right;
+
+}
+.Player2ManaBar:before {
+  content: attr(data-label);
+  font-size: 1em;
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  left: 0;
+  right: 0;
+}
+.Player2ManaBar .value {
+  background-color: #1663be;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player3ManaBar {
+  height: 1.5em;
+  width: 100%;
+  background-color: #c9c9c9;
+  position: relative;
+  font-weight:bold;
+  float: right;
+
+}
+.Player3ManaBar:before {
+  content: attr(data-label);
+  font-size: 1em;
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  left: 0;
+  right: 0;
+}
+.Player3ManaBar .value {
   background-color: #1663be;
   display: inline-block;
   height: 100%;
@@ -98,6 +170,8 @@
     width:33.3%;
     float:left;
     flex: 1;
+    min-height: 10em;
+    overflow: hidden;
 }
 
 .player1_battle_info_left_div {
@@ -105,6 +179,8 @@
     width:33.3%;
     float:left;
     height:100%;
+    min-height: 10em;
+    overflow: hidden;
 
 }
 
@@ -113,6 +189,8 @@
     width:33.3%;
     float:left;
     height:100%;
+    min-height: 10em;
+    overflow: hidden;
 
 }
 
@@ -121,8 +199,83 @@
     width:31.9%;
     float:left;
     height:100%;
+    min-height: 10em;
+    overflow: hidden;
 
 }
+
+.player2_battle_info_div {
+
+    width:33.3%;
+    float:left;
+    flex: 1;
+    min-height: 10em;
+    overflow: hidden;
+}
+
+.player2_battle_info_left_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+    min-height: 10em;
+    overflow: hidden;
+}
+
+.player2_battle_info_center_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+    min-height: 10em;
+    overflow: hidden;
+}
+
+.player2_battle_info_right_div {
+    position: relative;
+    width:31.9%;
+    float:left;
+    height:100%;
+    min-height: 10em;
+    overflow: hidden;
+}
+
+.player3_battle_info_div {
+
+    width:33.3%;
+    float:left;
+    flex: 1;
+    min-height: 10em;
+    overflow: hidden;
+}
+
+.player3_battle_info_left_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+    min-height: 10em;
+    overflow: hidden;
+}
+
+.player3_battle_info_center_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+    min-height: 10em;
+    overflow: hidden;
+}
+
+.player3_battle_info_right_div {
+    position: relative;
+    width:31.9%;
+    float:left;
+    height:100%;
+    min-height: 10em;
+    overflow: hidden;
+}
+
 
 .battle_enemy_div {
     width:33.3%;
@@ -163,6 +316,9 @@
 .party_container {
     bottom:30px;
     position:absolute;
+    width:99.8%;
+    min-height: 300px;
+    overflow: hidden;
 }
 
 

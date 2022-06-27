@@ -38,7 +38,7 @@ function AttackEnemy() {
     document.getElementById("squirrelcounter").innerHTML = "Buying Another Squirrel Currenctly Costs " + squirrelprice + " Acorns"
     var mainGameLoop = window.setInterval(function () {
       cuttrees()
-    }, 1000)  
+    }, 1000)
   } else if (acorn < squirrelprice) {
     squirrel += 0
     acorn= acorn < 0 ? 0 :acorn;
@@ -52,11 +52,11 @@ function AxeUpgrade() { // Allows you to get more wood per click but in turn tak
       funds -= AxeCost
       woodperclick += 1
       AxeCost *= 2
-      document.getElementById("AxeCost").innerHTML = "Upgrading Your Axe Currently Costs $ " + AxeCost 
+      document.getElementById("AxeCost").innerHTML = "Upgrading Your Axe Currently Costs $ " + AxeCost
       document.getElementById("readout4").innerHTML = "You have enough money to upgrade your axe."
-      document.getElementById("funds").innerHTML = "Available Funds: $ " + funds      
+      document.getElementById("funds").innerHTML = "Available Funds: $ " + funds
     } else if (AxeCost > funds) {
-      document.getElementById("readout4").innerHTML = "You don't have enough money to upgrade your axe!"        
+      document.getElementById("readout4").innerHTML = "You don't have enough money to upgrade your axe!"
     }
   }
 
@@ -73,7 +73,7 @@ function makemoney() { // Automatically sells your paper and in turn increases y
     } else if (paper <= 0) {
         document.getElementById("readout2").innerHTML = "You don't have any paper to sell!"
         }
-}    
+}
 
 interval = setInterval(makemoney, 3000); // The "timer" which allows this function to perform automatically.
 
@@ -104,14 +104,4 @@ function makepaper(){ // Allows you to produce paper by decreasing your amount o
     document.getElementById("readout3").innerHTML = "You don't have enough wood to make paper!"
     }
 }
-*/    
-var saveGameLoop = window.setInterval(function() {
-        localStorage.setItem("TreeIncSave", JSON.stringify(gameData))
-      }, 15000)
-
-// These two boys right here allow you to save and load the game.
-
-var savegame = JSON.parse(localStorage.getItem("TreeIncSave"))
-      if (savegame !== null) {
-        gameData = savegame
-    }
+*/
