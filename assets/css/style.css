@@ -1,0 +1,329 @@
+.textwrapcenter {
+    text-align:center;
+}
+
+.btnwrapcenter {
+    text-align:center;
+}
+
+.progressbarwrapcenter {
+    text-align:center;
+}
+
+#CollectLootText {
+    text-align:center;
+}
+
+.party_container {
+    width:100%;
+}
+
+.Player1HealthBar {
+  height: 1.5em;
+  width: 100%;
+  background-color: #c9c9c9;
+  position: relative;
+  font-weight:bold;
+  float: left;
+}
+.Player1HealthBar:before {
+  content: attr(data-label);
+  font-size: 1em;
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  left: 0;
+  right: 0;
+}
+.Player1HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player1ManaBar {
+  height: 1.5em;
+  width: 100%;
+  background-color: #c9c9c9;
+  position: relative;
+  font-weight:bold;
+  float: right;
+
+}
+.Player1ManaBar:before {
+  content: attr(data-label);
+  font-size: 1em;
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  left: 0;
+  right: 0;
+}
+.Player1ManaBar .value {
+  background-color: #1663be;
+  display: inline-block;
+  height: 100%;
+}
+
+.EnemyHealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #c9c9c9;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.EnemyHealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.EnemyHealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.main_battle_div{
+    display:flex;
+}
+
+.player1_battle_info_div {
+
+    width:33.3%;
+    float:left;
+    flex: 1;
+}
+
+.player1_battle_info_left_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player1_battle_info_center_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player1_battle_info_right_div {
+    position: relative;
+    width:31.9%;
+    float:left;
+    height:100%;
+
+}
+
+.battle_enemy_div {
+    width:33.3%;
+    float:left;
+    flex: 1;
+
+}
+
+.battle_enemy_left_div{
+    float:left;
+    position:relative;
+    width:33.3%;
+    height:100%;
+}
+
+.battle_enemy_center_div{
+    float:left;
+    position:relative;
+    width:33.3%;
+    height:100%;
+}
+
+.battle_enemy_right_div{
+    float:left;
+    position:relative;
+    width:31.9%;
+    height:100%;
+}
+
+.collect_loot_div {
+    border:1px solid gray;
+    width:33.3%;
+    float:left;
+    flex: 1;
+    padding:0.5em;
+}
+
+.party_container {
+    bottom:30px;
+    position:absolute;
+}
+
+
+  p.clean {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11;
+    margin-bottom: 0;
+    margin-top: 0px;
+
+}
+
+p.clean2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11;
+    margin-bottom: 0;
+    margin-top: 0px;
+
+}
+
+p.clean3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11;
+    margin-bottom: 3px;
+    margin-top: 0px;
+
+}
+
+
+p.console {
+    font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-size: 12;
+    color: white;
+    margin-top: 0;
+}
+
+p.consoleOld {
+    font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;
+    font-size: 12;
+    color: grey;
+    margin-bottom: 0;
+}
+
+
+.button {
+    border: 1px solid #1a1a1a;
+    background: #666666;
+
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cccccc));
+    background: -webkit-linear-gradient(top, #ffffff, #888888);
+    background: -moz-linear-gradient(top, #ffffff, #888888);
+    background: -ms-linear-gradient(top, #ffffff, #888888);
+    background: -o-linear-gradient(top, #ffffff, #888888);
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #888888 100%);
+
+    padding: 12.5px 25px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    text-shadow: #cccccc 0 1px 0;
+    color: #000000;
+    font-size: 16px;
+    font-family: helvetica, serif;
+    text-decoration: none;
+    vertical-align: middle;
+    outline: none;
+    }
+
+ .button:hover {
+    border: 1px solid #898989;
+    text-shadow: #d4d4d4 0 1px 0;
+    background: #666666;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#666666));
+    background: -webkit-linear-gradient(top, #ffffff, #666666);
+    background: -moz-linear-gradient(top, #ffffff, #666666);
+    background: -ms-linear-gradient(top, #ffffff, #666666);
+    background: -o-linear-gradient(top, #ffffff, #666666);
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #666666 100%);
+    color: #000000;
+    }
+
+ .button:active {
+    text-shadow: #bfbfbf 0 1px 0;
+    border: 1px solid #2e2e2e;
+
+    background: #d9d9d9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#595959), to(#616161));
+    background: -webkit-linear-gradient(top, #595959, #d9d9d9);
+    background: -moz-linear-gradient(top, #595959, #d9d9d9);
+    background: -ms-linear-gradient(top, #595959, #d9d9d9);
+    background: -o-linear-gradient(top, #595959, #d9d9d9);
+    background-image: -ms-linear-gradient(top, #595959 0%, #d9d9d9 100%);
+
+    color: #000000;
+    }
+
+ .button:disabled{
+    opacity: 0.6;
+    border: 1px solid #ffffff;
+ }
+
+ .button2 {
+    border: 1px solid #1a1a1a;
+    background: #666666;
+
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cccccc));
+    background: -webkit-linear-gradient(top, #ffffff, #888888);
+    background: -moz-linear-gradient(top, #ffffff, #888888);
+    background: -ms-linear-gradient(top, #ffffff, #888888);
+    background: -o-linear-gradient(top, #ffffff, #888888);
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #888888 100%);
+
+    padding: 2px 4px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    text-shadow: #cccccc 0 1px 0;
+    color: #000000;
+    font-size: 11px;
+    font-family: helvetica, serif;
+    text-decoration: none;
+    vertical-align: middle;
+    outline: none;
+    }
+
+ .button2:hover {
+    border: 1px solid #898989;
+    text-shadow: #d4d4d4 0 1px 0;
+    background: #616161;
+
+    background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#888888));
+    background: -webkit-linear-gradient(top, #f7f7f7, #888888);
+    background: -moz-linear-gradient(top, #f7f7f7, #888888);
+    background: -ms-linear-gradient(top, #f7f7f7, #888888);
+    background: -o-linear-gradient(top, #f7f7f7, #888888);
+    background-image: -ms-linear-gradient(top, #f7f7f7 0%, #888888 100%);
+
+    color: #000000;
+    }
+
+ .button2:active {
+    text-shadow: #bfbfbf 0 1px 0;
+    border: 1px solid #2e2e2e;
+
+    background: #d9d9d9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#595959), to(#616161));
+    background: -webkit-linear-gradient(top, #595959, #d9d9d9);
+    background: -moz-linear-gradient(top, #595959, #d9d9d9);
+    background: -ms-linear-gradient(top, #595959, #d9d9d9);
+    background: -o-linear-gradient(top, #595959, #d9d9d9);
+    background-image: -ms-linear-gradient(top, #595959 0%, #d9d9d9 100%);
+
+    color: #444444;
+    }
+
+ .button2:disabled {
+    opacity: 0.6;
+    border: 1px solid #ffffff;
+ }
