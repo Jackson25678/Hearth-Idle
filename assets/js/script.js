@@ -1,117 +1,163 @@
 
 // The variables.
-health = 50,
-damage = 0,
-funds = 0,
-paperSold = 0,
-Allpaper = 0,
-AxeCost = 10,
-woodperclick = 1,
-acorn = 0,
-squirrel = 0,
-squirrelprice = 10,
-squirrelpower = 1,
-enemyhealth = 10
+tankhealth = 10,
+healerhealth = 10,
+dpshealth = 10,
+tankdamage = 1,
+healerhealing = 1,
+dpsdamage = 0.5,
+tankattackspeed = 2500,
+healerattackspeed = 5000,
+dpsattackspeed = 1500,
+enemyhealthvalue = 20,
+enemyhealthmaxvalue = 20,
+enemydamage = 1,
+enemyattackspeed = 3,
+currentzone = 0,
+refreshtankattackinterval = 0,
+lootamount = 0
 
-
-function updatecount(){ // This function makes it so that the counters don't lag and show past numbers.
-    setInterval(() => {
-        document.getElementById("squirrel").innerHTML = "You Have " + squirrel + "Squirrels"
-        document.getElementById("Player1DamageText").innerHTML = "You Have " + damage + " Damage"
-        document.getElementById("paper made").innerHTML = "You Have " + paper + " Sheets of Paper"
-        document.getElementById("Player1HealthText").innerHTML = "You Have " + health + " Health"
-        document.getElementById("funds").innerHTML = "Available Funds: $ " + funds
-        document.getElementById("Papersold").innerHTML = paperSold + " Paper Sold"
-        document.getElementById("EnemyHealthText").innerHTML = "Enemy Health: " + enemyhealth
-    }, 40);
-
-}
-/*
-function AttackEnemy() {
-  if (acorn >= squirrelprice) {
-    squirrel += 1
-    acorn -= squirrelprice
-    Math.floor(acorn);
-    squirrelprice += 10
-    acorn= acorn < 0 ? 0 :acorn;
-    document.getElementById("squirrel").innerHTML = "You Have " + squirrel + " Squirrels"
-    document.getElementById("squirrelcounter").innerHTML = "Buying Another Squirrel Currenctly Costs " + squirrelprice + " Acorns"
-    var mainGameLoop = window.setInterval(function () {
-      cuttrees()
-    }, 1000)  
-  } else if (acorn < squirrelprice) {
-    squirrel += 0
-    acorn= acorn < 0 ? 0 :acorn;
-  }
-  acorn= acorn < 0 ? 0 :acorn;
+//Set all of the party members stats to there variables
+function setpartymemberstats(){
+  //Tank
+  document.getElementById("Player1DamageInfoText").innerHTML = "Damage: " + tankdamage;
+  //Healer
+  document.getElementById("Player2HealingInfoText").innerHTML = "Damage: " + healerhealing;
+  //DPS
+  document.getElementById("Player3DamageInfoText").innerHTML = "Damage: " + dpsdamage;
 }
 
+var ElwynnForestEnemyArray = ['Kobold', 'Murloc', 'Wolf', 'Bear','Spider'];
 
-function AxeUpgrade() { // Allows you to get more wood per click but in turn takes (a small bit of) your funds.
-    if (funds >= AxeCost) {
-      funds -= AxeCost
-      woodperclick += 1
-      AxeCost *= 2
-      document.getElementById("AxeCost").innerHTML = "Upgrading Your Axe Currently Costs $ " + AxeCost 
-      document.getElementById("readout4").innerHTML = "You have enough money to upgrade your axe."
-      document.getElementById("funds").innerHTML = "Available Funds: $ " + funds      
-    } else if (AxeCost > funds) {
-      document.getElementById("readout4").innerHTML = "You don't have enough money to upgrade your axe!"        
+function tankattackenemy(){
+
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
+
+
+  var tankattackinterval = setInterval(() => {
+    if(enemyhealthvalue > 0){
+      enemyhealthvalue -= tankdamage;
     }
-  }
+
+    console.log(enemyhealthvalue);
+    enemyhealthprogressbar.setAttribute("value",enemyhealthvalue);
+    enemyhealthprogressbar.setAttribute("max",enemyhealthmaxvalue);
+    enemyhealthprogressbar.setAttribute("data-label",enemyhealthvalue + "/" + enemyhealthmaxvalue);
 
 
-function makemoney() { // Automatically sells your paper and in turn increases your amount of funds by one.
-    if (paper > 0) {
-        paper -= 1
-        funds += 1
-        paperSold += 1
-        document.getElementById("paper made").innerHTML = "You Have " + paper + " Sheets of Paper"
-        document.getElementById("funds").innerHTML = "Available Funds: $ " + funds
-        document.getElementById("Papersold").innerHTML = paperSold + " Paper Sold"
-        document.getElementById("readout2").innerHTML = "You have some paper to sell."
-    } else if (paper <= 0) {
-        document.getElementById("readout2").innerHTML = "You don't have any paper to sell!"
-        }
-}    
+    if(enemyhealthvalue <= 0){
+      selectelwynnforestzone();
+      clearInterval(tankattackinterval);
+      clearInterval(dpsattackinterval);
+      enemyhealthprogressbar.setAttribute("value",enemyhealthvalue);
+      enemyhealthprogressbar.setAttribute("max",enemyhealthmaxvalue);
+      enemyhealthprogressbar.setAttribute("data-label",enemyhealthvalue + "/" + enemyhealthmaxvalue);
 
-interval = setInterval(makemoney, 3000); // The "timer" which allows this function to perform automatically.
+      if(lootamount<10){
+        lootamount += 1;
+        document.getElementById("CollectLootText").innerHTML = "Loot (" + lootamount + "/" + "10" + ")"
+      }
 
+    }
 
-function cuttrees(){ // Allows you to get wood.
-  wood += woodperclick
-  document.getElementById("wood cut").innerHTML = "You Have " + wood + " Health"
-  let RandomNumber = Math.floor(Math.random() * 1001);
-  if ((RandomNumber % 7) == 0) {
-    acorn += 1
-    document.getElementById("acorn").innerHTML = "You Have " + acorn + " Damage"
-  } else if ((RandomNumber % 7) !== 0) {
-    acorn += 0
-    document.getElementById("acorn").innerHTML = "You Have " + acorn + " Damage"
-  }
+  }, tankattackspeed);
 }
 
-function makepaper(){ // Allows you to produce paper by decreasing your amount of wood.
-    if (wood > 0) {
-    paper += 1
-    wood -= 1
-    Allpaper += 1
-    document.getElementById("paper made").innerHTML = "You Have " + paper + " Sheets of Paper"
-    document.getElementById("wood cut").innerHTML = "You Have " + wood + " Health"
-    document.getElementById("readout3").innerHTML = "You have enough wood to make paper."
-    document.getElementById("Allpaper").innerHTML = "Ever Since You Started This Journey, You Have Made " + Allpaper + " Sheets of Paper"
-    } else if (wood <= 0) {
-    document.getElementById("readout3").innerHTML = "You don't have enough wood to make paper!"
+function dpsattackenemy(){
+
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
+
+  console.log(enemyhealthprogressbar);
+
+
+    var dpsattackinterval = setInterval(() => {
+    if(enemyhealthvalue > 0){
+      enemyhealthvalue -= dpsdamage;
     }
+
+    console.log(enemyhealthvalue);
+    enemyhealthprogressbar.setAttribute("value",enemyhealthvalue);
+    enemyhealthprogressbar.setAttribute("max",enemyhealthmaxvalue);
+    enemyhealthprogressbar.setAttribute("data-label",enemyhealthvalue + "/" + enemyhealthmaxvalue);
+
+
+    if(enemyhealthvalue <= 0){
+      selectelwynnforestzone();
+      clearInterval(tankattackinterval);
+      clearInterval(dpsattackinterval);
+      enemyhealthprogressbar.setAttribute("value",enemyhealthvalue);
+      enemyhealthprogressbar.setAttribute("max",enemyhealthmaxvalue);
+      enemyhealthprogressbar.setAttribute("data-label",enemyhealthvalue + "/" + enemyhealthmaxvalue);
+
+      if(lootamount<10){
+        lootamount += 1;
+        document.getElementById("CollectLootText").innerHTML = "Loot (" + lootamount + "/" + "10" + ")"
+      }
+
+    }
+
+  }, dpsattackspeed);
 }
-*/    
-var saveGameLoop = window.setInterval(function() {
-        localStorage.setItem("TreeIncSave", JSON.stringify(gameData))
-      }, 15000)
 
-// These two boys right here allow you to save and load the game.
+function healerhealplayer(){
 
-var savegame = JSON.parse(localStorage.getItem("TreeIncSave"))
-      if (savegame !== null) {
-        gameData = savegame
-    }
+
+
+}
+
+function selectelwynnforestzone(){
+
+  var currentzone = 1;
+
+  const randomelwynnenemy = Math.floor(Math.random() * ElwynnForestEnemyArray.length);
+  console.log(randomelwynnenemy, ElwynnForestEnemyArray[randomelwynnenemy]);
+  document.getElementById("EnemyNameText").innerHTML = ElwynnForestEnemyArray[randomelwynnenemy];
+
+  document.getElementById("battle_enemy_loader_container_id").style.display = "block";
+  document.getElementById("SelectZoneBeforeTextId").style.display = "none";
+
+
+//Kobold
+  if(randomelwynnenemy == 0){
+    enemyhealthvalue = 20;
+    enemyhealthmaxvalue = 20;
+  }
+//Murloc
+  if(randomelwynnenemy == 1){
+    enemyhealthvalue = 20;
+    enemyhealthmaxvalue = 20;
+  }
+//Wolf
+  if(randomelwynnenemy == 2){
+    enemyhealthvalue = 20;
+    enemyhealthmaxvalue = 20;
+  }
+//Bear
+  if(randomelwynnenemy == 3){
+    enemyhealthvalue = 20;
+    enemyhealthmaxvalue = 20;
+  }
+//Spider
+  if(randomelwynnenemy == 4){
+    enemyhealthvalue = 20;
+    enemyhealthmaxvalue = 20;
+  }
+
+  setTimeout(() => {
+
+    const enemybattleloadertimer = document.getElementById("battle_enemy_loader_id")
+
+    enemybattleloadertimer.style.display = "none";
+
+    document.getElementById("enemy_stats_text_id").style.display = "block";
+    document.getElementById("EnemyNameText").style.display = "block";
+    document.getElementById("EnemyHealthBarId").style.display = "block";
+    document.getElementById("CollectLootText").style.display = "block";
+    document.getElementById("CollectLootButton").style.display = "block";
+
+  }, 700);
+
+  tankattackenemy();
+  dpsattackenemy();
+
+}
