@@ -29,8 +29,7 @@ function setpartymemberstats(){
 
 var ElwynnForestEnemyArray = ['Kobold', 'Murloc', 'Wolf', 'Bear','Spider'];
 
-function tankattackenemy(){
-
+function attackenemy(){
   var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
 
 
@@ -61,48 +60,32 @@ function tankattackenemy(){
     }
 
   }, tankattackspeed);
-}
 
-function dpsattackenemy(){
+  var dpsattackinterval = setInterval(() => {
+  if(enemyhealthvalue > 0){
+    enemyhealthvalue -= dpsdamage;
+  }
 
-  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
+  console.log(enemyhealthvalue);
+  enemyhealthprogressbar.setAttribute("value",enemyhealthvalue);
+  enemyhealthprogressbar.setAttribute("max",enemyhealthmaxvalue);
+  enemyhealthprogressbar.setAttribute("data-label",enemyhealthvalue + "/" + enemyhealthmaxvalue);
 
-  console.log(enemyhealthprogressbar);
 
-
-    var dpsattackinterval = setInterval(() => {
-    if(enemyhealthvalue > 0){
-      enemyhealthvalue -= dpsdamage;
-    }
-
-    console.log(enemyhealthvalue);
+  if(enemyhealthvalue <= 0){
+    selectelwynnforestzone();
+    clearInterval(tankattackinterval);
+    clearInterval(dpsattackinterval);
     enemyhealthprogressbar.setAttribute("value",enemyhealthvalue);
     enemyhealthprogressbar.setAttribute("max",enemyhealthmaxvalue);
     enemyhealthprogressbar.setAttribute("data-label",enemyhealthvalue + "/" + enemyhealthmaxvalue);
 
-
-    if(enemyhealthvalue <= 0){
-      selectelwynnforestzone();
-      clearInterval(tankattackinterval);
-      clearInterval(dpsattackinterval);
-      enemyhealthprogressbar.setAttribute("value",enemyhealthvalue);
-      enemyhealthprogressbar.setAttribute("max",enemyhealthmaxvalue);
-      enemyhealthprogressbar.setAttribute("data-label",enemyhealthvalue + "/" + enemyhealthmaxvalue);
-
-      if(lootamount<10){
-        lootamount += 1;
-        document.getElementById("CollectLootText").innerHTML = "Loot (" + lootamount + "/" + "10" + ")"
-      }
-
+    if(lootamount<10){
+      lootamount += 1;
+      document.getElementById("CollectLootText").innerHTML = "Loot (" + lootamount + "/" + "10" + ")"
     }
-
-  }, dpsattackspeed);
-}
-
-function healerhealplayer(){
-
-
-
+  }
+}, dpsattackspeed);
 }
 
 function selectelwynnforestzone(){
@@ -157,7 +140,6 @@ function selectelwynnforestzone(){
 
   }, 700);
 
-  tankattackenemy();
-  dpsattackenemy();
+  attackenemy();
 
 }
