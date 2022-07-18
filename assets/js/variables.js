@@ -1,3 +1,10 @@
+//Player current zones: 0:Not in a zone 1: elwynn 2: west fall
+var User = {
+  copper:0,
+  silver:0,
+  gold:0
+}
+
 var Tank = {
   currentzone: 0,
   level: 1,
@@ -11,10 +18,11 @@ var Tank = {
   expToLevel: 100,
   incombat: 0,
 }
+
 var Healer = {
   currentzone: 0,
   level: 1,
-  healing: 0.5,
+  healing: 4,
   attackspeed: 2500,
   health: 25,
   maxhealth: 25,
@@ -59,12 +67,7 @@ var membersActive = {
   inCombat: 0
 }
 
-var MemberList = [
-  'Tank',
-  'Healer',
-  'DPS',
-];
-
+var loot = 0;
 
 var inCombat = 0;
 
