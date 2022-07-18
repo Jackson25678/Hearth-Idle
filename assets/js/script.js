@@ -1,107 +1,455 @@
-
-// The variables.
-health = 50,
-damage = 0,
-funds = 0,
-paperSold = 0,
-Allpaper = 0,
-AxeCost = 10,
-woodperclick = 1,
-acorn = 0,
-squirrel = 0,
-squirrelprice = 10,
-squirrelpower = 1,
-enemyhealth = 10
-
-
-function updatecount(){ // This function makes it so that the counters don't lag and show past numbers.
-    setInterval(() => {
-        document.getElementById("squirrel").innerHTML = "You Have " + squirrel + "Squirrels"
-        document.getElementById("Player1DamageText").innerHTML = "You Have " + damage + " Damage"
-        document.getElementById("paper made").innerHTML = "You Have " + paper + " Sheets of Paper"
-        document.getElementById("Player1HealthText").innerHTML = "You Have " + health + " Health"
-        document.getElementById("funds").innerHTML = "Available Funds: $ " + funds
-        document.getElementById("Papersold").innerHTML = paperSold + " Paper Sold"
-        document.getElementById("EnemyHealthText").innerHTML = "Enemy Health: " + enemyhealth
-    }, 40);
-
-}
-/*
-function AttackEnemy() {
-  if (acorn >= squirrelprice) {
-    squirrel += 1
-    acorn -= squirrelprice
-    Math.floor(acorn);
-    squirrelprice += 10
-    acorn= acorn < 0 ? 0 :acorn;
-    document.getElementById("squirrel").innerHTML = "You Have " + squirrel + " Squirrels"
-    document.getElementById("squirrelcounter").innerHTML = "Buying Another Squirrel Currenctly Costs " + squirrelprice + " Acorns"
-    var mainGameLoop = window.setInterval(function () {
-      cuttrees()
-    }, 1000)
-  } else if (acorn < squirrelprice) {
-    squirrel += 0
-    acorn= acorn < 0 ? 0 :acorn;
-  }
-  acorn= acorn < 0 ? 0 :acorn;
+function healall(){
+  Tank.health = 25;
+  Healer.health = 25;
+  DPS.health = 25;
+  setHealthBar();
+  console.log("Your members have been healed!");
 }
 
+//Update party members stats info every second
+setInterval(
+  function setpartymemberstats(){
+    //Divide by 1000 to convert to seconds
+    //Tank
+    document.getElementById("Player1DamageInfoText").innerHTML = "Damage: " + Tank.damage;
+    document.getElementById("Player1ASInfoText").innerHTML = "Atk speed: " + Tank.attackspeed / 1000 + "s";
+    document.getElementById("Player1DRInfoText").innerHTML = "Dmg reduction: " + Tank.reduction;
+    document.getElementById("Player1RegenInfoText").innerHTML = "Regen: " + Tank.regen;
+    document.getElementById("TankLevelText").innerHTML = "Level: " + Tank.level;
+    //Healer
+    document.getElementById("Player2HealingInfoText").innerHTML = "Healing: " + Healer.healing;
+    document.getElementById("Player2ASInfoText").innerHTML = "Atk speed: " + Healer.attackspeed / 1000 + "s";
+    document.getElementById("Player2DRInfoText").innerHTML = "Dmg reduction " + Healer.reduction;
+    document.getElementById("Player3RegenInfoText").innerHTML = "Regen: " + Healer.regen;
+    //DPS
+    document.getElementById("Player3DamageInfoText").innerHTML = "Damage: " + DPS.damage;
+    document.getElementById("Player3ASInfoText").innerHTML = "Atk speed: " + DPS.attackspeed / 1000 + "s";
+    document.getElementById("Player3DRInfoText").innerHTML = "Dmg reduction: " + DPS.reduction;
+    document.getElementById("Player3RegenInfoText").innerHTML = "Regen: " + DPS.regen;
 
-function AxeUpgrade() { // Allows you to get more wood per click but in turn takes (a small bit of) your funds.
-    if (funds >= AxeCost) {
-      funds -= AxeCost
-      woodperclick += 1
-      AxeCost *= 2
-      document.getElementById("AxeCost").innerHTML = "Upgrading Your Axe Currently Costs $ " + AxeCost
-      document.getElementById("readout4").innerHTML = "You have enough money to upgrade your axe."
-      document.getElementById("funds").innerHTML = "Available Funds: $ " + funds
-    } else if (AxeCost > funds) {
-      document.getElementById("readout4").innerHTML = "You don't have enough money to upgrade your axe!"
+    checkForLevelUp();
+    setExpBar();
+  }, 1000);
+
+function addLoot(){
+  //Tank
+  //Elwynn
+  if(Tank.currentzone == 1 || Healer.currentzone == 1 || DPS.currentzone == 1 ){
+    if(randomelwynnenemy == 0){
+      var copper = Math.floor(Math.random() * 5);
+      User.copper += copper;
+      }
+    if(randomelwynnenemy == 1){
+      var copper = Math.floor(Math.random() * 5);
+      User.copper += copper;
+    }
+    if(randomelwynnenemy == 2){
+      var copper = Math.floor(Math.random() * 5);
+      User.copper += copper;
+    }
+    if(randomelwynnenemy == 3){
+      var copper = Math.floor(Math.random() * 5);
+      User.copper += copper;
+    }
+    if(randomelwynnenemy == 4){
+      var copper = Math.floor(Math.random() * 5);
+      User.copper += copper;
     }
   }
 
-
-function makemoney() { // Automatically sells your paper and in turn increases your amount of funds by one.
-    if (paper > 0) {
-        paper -= 1
-        funds += 1
-        paperSold += 1
-        document.getElementById("paper made").innerHTML = "You Have " + paper + " Sheets of Paper"
-        document.getElementById("funds").innerHTML = "Available Funds: $ " + funds
-        document.getElementById("Papersold").innerHTML = paperSold + " Paper Sold"
-        document.getElementById("readout2").innerHTML = "You have some paper to sell."
-    } else if (paper <= 0) {
-        document.getElementById("readout2").innerHTML = "You don't have any paper to sell!"
-        }
+  loot += 1;
+  document.getElementById("CollectLootText").innerHTML = "Loot " + "(" + loot +"/10)" ;
 }
 
-interval = setInterval(makemoney, 3000); // The "timer" which allows this function to perform automatically.
+function checkForLevelUp(){
+  //Tank
+  if(Tank.exp >= Tank.expToLevel){
+    Tank.exp -= Tank.expToLevel;
+    Tank.level = Tank.level + 1;
+  }
+  if(Healer.exp >= Healer.expToLevel){
+    Healer.exp -= Healer.expToLevel;
+    Healer.level = Healer.level + 1;
+  }
+  if(DPS.exp >= DPS.expToLevel){
+    DPS.exp -= DPS.expToLevel;
+    DPS.level = DPS.level + 1;
+  }
+  setExpBar();
+}
+
+function setExpBar(){
+  var tankexpprogressbar = document.getElementById("TankEXPBarId");
+  var dpsexpprogressbar = document.getElementById("DPSExpBarId");
+  var healerexpprogressbar = document.getElementById("HealerExpBarId");
+  tankexpprogressbar.setAttribute("value", Tank.exp);
+  tankexpprogressbar.setAttribute("max", Tank.expToLevel);
+
+  healerexpprogressbar.setAttribute("value", Healer.exp);
+  healerexpprogressbar.setAttribute("max", Healer.expToLevel);
+
+  dpsexpprogressbar.setAttribute("value", DPS.exp);
+  dpsexpprogressbar.setAttribute("max", DPS.expToLevel);
+}
+
+function setHealthBar(){
+  var tankhealthprogressbar = document.getElementById("Player1HealthBarId");
+  var healerhealthprogressbar = document.getElementById("Player2HealthBarId");
+  var dpshealthprogressbar = document.getElementById("Player3HealthBarId");
+  tankhealthprogressbar.setAttribute("value", Tank.health);
+  tankhealthprogressbar.setAttribute("max", Tank.maxhealth);
+  tankhealthprogressbar.setAttribute("data-label", Tank.health + "/" + Tank.maxhealth);
+
+  healerhealthprogressbar.setAttribute("value", Healer.health);
+  healerhealthprogressbar.setAttribute("max", Healer.maxhealth);
+  healerhealthprogressbar.setAttribute("data-label", Healer.health + "/" + Healer.maxhealth);
+
+  dpshealthprogressbar.setAttribute("value", DPS.health);
+  dpshealthprogressbar.setAttribute("max", DPS.maxhealth);
+  dpshealthprogressbar.setAttribute("data-label", DPS.health + "/" + DPS.maxhealth);
+}
+
+//Select a member from an array list to choose which member will be attacked by an enemy randomly
+function selectrandommember(memberList){
+
+  return memberList[Math.floor(Math.random()*memberList.length)];
+
+  }
+
+  var memberList = [];
+
+function enemyrandomattack(){
+
+  window.enemyattackinterval = setInterval(() => {
+
+    partyMember = selectrandommember(memberList);
+
+    if(partyMember == 'tank'){
+      if(Tank.health > 0 && membersActive.tank == 1){
+        Tank.health -= ActiveEnemy.damage;
+      }
+    }
+    if(partyMember == 'healer'){
+      if(Healer.health > 0 && membersActive.healer == 1){
+        Healer.health -= ActiveEnemy.damage;
+      }
+    }
+    if(partyMember == 'dps'){
+      if(DPS.health > 0 && membersActive.dps == 1){
+        DPS.health -= ActiveEnemy.damage;
+      }
+    }
+
+    setHealthBar();
+
+  }, ActiveEnemy.attackspeed);
+}
+
+//Set up our combat attack timers
+function tankattackenemy(){
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
+  var tankexpprogressbar = document.getElementById("TankExpBarId");
+  var healerexpprogressbar = document.getElementById("HealerExpBarId");
+  var dpsexpprogressbar = document.getElementById("DPSExpBarId");
 
 
-function cuttrees(){ // Allows you to get wood.
-  wood += woodperclick
-  document.getElementById("wood cut").innerHTML = "You Have " + wood + " Health"
-  let RandomNumber = Math.floor(Math.random() * 1001);
-  if ((RandomNumber % 7) == 0) {
-    acorn += 1
-    document.getElementById("acorn").innerHTML = "You Have " + acorn + " Damage"
-  } else if ((RandomNumber % 7) !== 0) {
-    acorn += 0
-    document.getElementById("acorn").innerHTML = "You Have " + acorn + " Damage"
+  window.tankattackinterval = setInterval(() => {
+    if(ActiveEnemy.health > 0  && Tank.health > 0 ){
+      ActiveEnemy.health -= Tank.damage;
+    }
+
+    enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
+    enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
+    enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+
+    if(ActiveEnemy.health <= 0){
+      document.getElementById("SelectZoneBeforeTextId").innerHTML = "loading...";
+      setTimeout(startCombat, 600);
+      clearInterval(window.tankattackinterval);
+      clearInterval(window.healerhealinterval);
+      clearInterval(window.dpsattackinterval);
+      clearInterval(window.enemyattackinterval);
+      enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
+      enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
+      enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+      var sharedExp = ActiveEnemy.expReward / membersActive.totalmembers;
+      if(membersActive.tank == 1 && Tank.health > 0){
+        Tank.exp += sharedExp;
+      }
+      if(membersActive.healer == 1 && Healer.health > 0){
+        Healer.exp += sharedExp;
+      }
+      if(membersActive.dps == 1 && DPS.health > 0){
+        DPS.exp += sharedExp;
+      }
+      checkForLevelUp()
+      setExpBar();
+      addLoot()
+    }
+  }, Tank.attackspeed);
+}
+
+function healerhealmember(){
+
+  window.healerhealinterval = setInterval(() => {
+    var needsHealed = Math.min(Tank.health, Healer.health, DPS.health);
+    console.log(needsHealed);
+
+  }, Healer.attackspeed);
+}
+
+function dpsattackenemy(){
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
+  var tankexpprogressbar = document.getElementById("TankExpBarId");
+  var dpsexpprogressbar = document.getElementById("DPSExpBarId");
+  var healerexpprogressbar = document.getElementById("HealerExpBarId");
+
+  window.dpsattackinterval = setInterval(() => {
+    if(ActiveEnemy.health > 0 && DPS.health > 0 ){
+      ActiveEnemy.health -= DPS.damage;
+    }
+
+    enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
+    enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
+    enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+
+    if(ActiveEnemy.health <= 0){
+      document.getElementById("SelectZoneBeforeTextId").innerHTML = "loading...";
+      setTimeout(startCombat, 600);
+      clearInterval(window.tankattackinterval);
+      clearInterval(window.healerhealinterval);
+      clearInterval(window.dpsattackinterval);
+      clearInterval(window.enemyattackinterval);
+      enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
+      enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
+      enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+      var sharedExp = ActiveEnemy.expReward / membersActive.totalmembers;
+      if(membersActive.tank == 1 && Tank.health > 0){
+        Tank.exp += sharedExp;
+      }
+      if(membersActive.healer == 1 && Healer.health > 0){
+        Healer.exp += sharedExp;
+      }
+      if(membersActive.dps == 1 && DPS.health > 0){
+        DPS.exp += sharedExp;
+      }
+      checkForLevelUp()
+      setExpBar();
+      addLoot()
+    }
+  }, DPS.attackspeed);
+}
+
+//Function for selecting the elwynn forest zone button
+function selectelwynnforestzone(){
+
+  stopCombat();
+  memberSelected.tank = 0;
+  memberSelected.healer = 0;
+  memberSelected.dps = 0;
+  if(sendOutMemberBoxVisibility == 0){
+    sendOutMemberBoxVisibility = 1;
+    document.getElementById("SelectPartyMemberContainerId").style.visibility = "visible";
+    document.getElementById("SelectTank").style.visibility = "visible";
+    document.getElementById("SelectHealer").style.visibility = "visible";
+    document.getElementById("SelectDPS").style.visibility = "visible";
+
+  }else{
+    sendOutMemberBoxVisibility = 0;
+    document.getElementById("SelectPartyMemberContainerId").style.visibility = "hidden";
+    document.getElementById("SelectTank").style.visibility = "hidden";
+    document.getElementById("SelectHealer").style.visibility = "hidden";
+    document.getElementById("SelectDPS").style.visibility = "hidden";
+  }
+
+  //check if a member is in use already
+  if(membersActive.tank == 0){
+    document.getElementById("SelectTank").style.border = "initial";
+  }else{
+    document.getElementById("SelectTank").style.border = "1px solid red";
+  }
+  if(membersActive.healer == 0){
+    document.getElementById("SelectHealer").style.border = "initial";
+  }else{
+    document.getElementById("SelectHealer").style.border = "1px solid red";
+  }
+  if(membersActive.dps == 0){
+    document.getElementById("SelectDPS").style.border = "initial";
+  }else{
+    document.getElementById("SelectDPS").style.border = "1px solid red";
+  }
+
+}
+//Selecting party members
+function SelectTankMember(){
+  if(memberSelected.tank == 0){
+    //1=combat
+    memberSelected.tank = 1
+    document.getElementById("SelectTank").style.border = "1px solid red";
+  }else{
+    memberSelected.tank = 0
+    document.getElementById("SelectTank").style.border = "initial";
+  }
+}
+function SelectHealerMember(){
+  if(memberSelected.healer == 0){
+    //1=combat
+    memberSelected.healer = 1
+    document.getElementById("SelectHealer").style.border = "1px solid red";
+  }else{
+    memberSelected.healer = 0
+    document.getElementById("SelectHealer").style.border = "initial";
+  }
+}
+function SelectDPSMember(){
+  if(memberSelected.dps == 0){
+    //1=combat
+    memberSelected.dps = 1
+    document.getElementById("SelectDPS").style.border = "1px solid red";
+  }else{
+    memberSelected.dps = 0
+    document.getElementById("SelectDPS").style.border = "initial";
   }
 }
 
-function makepaper(){ // Allows you to produce paper by decreasing your amount of wood.
-    if (wood > 0) {
-    paper += 1
-    wood -= 1
-    Allpaper += 1
-    document.getElementById("paper made").innerHTML = "You Have " + paper + " Sheets of Paper"
-    document.getElementById("wood cut").innerHTML = "You Have " + wood + " Health"
-    document.getElementById("readout3").innerHTML = "You have enough wood to make paper."
-    document.getElementById("Allpaper").innerHTML = "Ever Since You Started This Journey, You Have Made " + Allpaper + " Sheets of Paper"
-    } else if (wood <= 0) {
-    document.getElementById("readout3").innerHTML = "You don't have enough wood to make paper!"
-    }
+function startCombat(){
+
+  inCombat = 1;
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
+  document.querySelectorAll(".enemybattlevisibility").forEach(a=>a.style.visibility = "visible");
+  document.getElementById("SelectZoneBeforeTextId").innerHTML = ElwynnForestEnemies[randomelwynnenemy];
+  ActiveEnemy.health = ActiveEnemy.maxhealth;
+  enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
+  enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
+  enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+
+  //Check which enemy spawned, then assign its values
+  if(randomelwynnenemy == 0){
+    ActiveEnemy = Kobold;
+  }
+  if(randomelwynnenemy == 1){
+    ActiveEnemy = Spider;
+  }
+  if(randomelwynnenemy == 2){
+    ActiveEnemy = Bear;
+  }
+  if(randomelwynnenemy == 3){
+    ActiveEnemy = Murloc;
+  }
+  if(randomelwynnenemy == 4){
+    ActiveEnemy = Wolf;
+  }
+
+  if(membersActive.tank == 1){
+    tankattackenemy();
+  }
+  if(membersActive.healer == 1){
+    healerhealmember()
+  }
+  if(membersActive.dps == 1){
+    dpsattackenemy();
+  }
+
+  enemyrandomattack();
+  enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
+  enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
+  enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+
 }
-*/
+function stopCombat(){
+  document.querySelectorAll(".enemybattlevisibility").forEach(a=>a.style.visibility = "hidden");
+  document.getElementById("SelectZoneBeforeTextId").innerHTML = "Select a zone first!"
+  inCombat = 0;
+
+
+
+  if(membersActive.tank == 1){
+    membersActive.tank = 0;
+    memberSelected.tank = 0;
+    membersActive.totalmembers -= 1;
+    Tank.currentzone = 0
+    //Remove them from the active member list if they are in combat
+    memberList = memberList.filter(e => e !== 'tank');
+  }
+  if(membersActive.healer == 1){
+    membersActive.healer = 0;
+    memberSelected.healer = 0;
+    membersActive.totalmembers -= 1;
+    Healer.currentzone = 0
+    //Remove them from the active member list if they are in combat
+    memberList = memberList.filter(e => e !== 'tank');
+
+  }
+  if(membersActive.dps == 1){
+    membersActive.dps = 0;
+    memberSelected.dps = 0;
+    membersActive.totalmembers -= 1;
+    DPS.currentzone = 0
+    //Remove them from the active member list if they are in combat
+    memberList = memberList.filter(e => e !== 'tank');
+
+  }
+
+  clearInterval(window.tankattackinterval);
+  clearInterval(window.healerhealinterval);
+  clearInterval(window.dpsattackinterval);
+  document.getElementById("player1_battle_info_div_id").style.visibility = "hidden";
+  document.getElementById("player2_battle_info_div_id").style.visibility = "hidden";
+  document.getElementById("player3_battle_info_div_id").style.visibility = "hidden";
+
+
+
+  inCombat = 0;
+}
+
+function SendOutMembers(){
+  sendOutMemberBoxVisibility = 0;
+
+  document.getElementById("SelectPartyMemberContainerId").style.visibility = "hidden";
+  document.getElementById("SelectTank").style.visibility = "hidden";
+  document.getElementById("SelectHealer").style.visibility = "hidden";
+  document.getElementById("SelectDPS").style.visibility = "hidden";
+  document.getElementById("loader").style.display = "visible";
+  setExpBar();
+  setHealthBar();
+
+  if(memberSelected.tank >= 1){
+    membersActive.tank = 1;
+    membersActive.totalmembers += 1;
+    document.getElementById("player1_battle_info_div_id").style.visibility = "visible";
+    Tank.currentzone = 1;
+  }
+
+  if(memberSelected.healer >= 1){
+    membersActive.healer = 1;
+    membersActive.totalmembers += 1;
+    document.getElementById("player2_battle_info_div_id").style.visibility = "visible";
+    Healer.currentzone = 1;
+  }
+
+  if(memberSelected.dps >= 1){
+    membersActive.dps = 1;
+    membersActive.totalmembers += 1;
+    document.getElementById("player3_battle_info_div_id").style.visibility = "visible";
+    DPS.currentzone = 1;
+
+
+  }
+
+  if(memberSelected.tank >= 1 || memberSelected.healer >= 1 || memberSelected.dps >= 1){
+    document.getElementById("SelectZoneBeforeTextId").innerHTML = "loading...";
+    setTimeout(startCombat, 600);
+  }
+
+  if (membersActive.tank == 1){
+    memberList.push("tank");
+  }
+
+  if (membersActive.healer == 1){
+    memberList.push("healer");
+  }
+
+  if (membersActive.dps == 1){
+    memberList.push("dps");
+  }
+}

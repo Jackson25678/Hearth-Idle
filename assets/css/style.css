@@ -1,6 +1,30 @@
-body{
-    margin:0;
+body {
+    margin:0 auto;
     padding:0;
+    overflow-x:hidden;
+}
+
+.exp_bar_container{
+  width:100%;
+  top: 12em;
+  position: relative;
+  display:flex;
+
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid gray; /* Blue */
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  animation: spin 2s linear infinite;
+  visibility: hidden;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .textwrapcenter {
@@ -9,6 +33,12 @@ body{
 
 .btnwrapcenter {
     text-align:center;
+    display:flex;
+    justify-content: center;
+}
+
+progress {
+  text-align:center;
 }
 
 .progressbarwrapcenter {
@@ -19,128 +49,35 @@ body{
     text-align:center;
 }
 
-.Player1HealthBar {
-  height: 1.5em;
-  width: 100%;
-  background-color: #c9c9c9;
-  position: relative;
-  font-weight:bold;
-  float: left;
-}
-.Player1HealthBar:before {
-  content: attr(data-label);
-  font-size: 1em;
-  position: absolute;
-  text-align: center;
-  top: 5px;
-  left: 0;
-  right: 0;
-}
-.Player1HealthBar .value {
-  background-color: #05a000;
-  display: inline-block;
-  height: 100%;
+.SelectPartyMemberContainer {
+    visibility: hidden;
+    border:1px solid gray;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    margin-top:1em;
+    padding:1em;
+    z-index: 10;
 }
 
-.Player2HealthBar {
-  height: 1.5em;
-  width: 100%;
-  background-color: #c9c9c9;
-  position: relative;
-  font-weight:bold;
-  float: left;
-}
-.Player2HealthBar:before {
-  content: attr(data-label);
-  font-size: 1em;
-  position: absolute;
-  text-align: center;
-  top: 5px;
-  left: 0;
-  right: 0;
-}
-.Player2HealthBar .value {
-  background-color: #05a000;
-  display: inline-block;
-  height: 100%;
+.SelectPartyMember {
+    text-align:center;
+    display:flex;
+    display:flex;
+    padding:1em;
 }
 
-.Player1ManaBar {
-  height: 1.5em;
-  width: 100%;
-  background-color: #c9c9c9;
-  position: relative;
-  font-weight:bold;
-  float: right;
-
-}
-.Player1ManaBar:before {
-  content: attr(data-label);
-  font-size: 1em;
-  position: absolute;
-  text-align: center;
-  top: 5px;
-  left: 0;
-  right: 0;
-}
-.Player1ManaBar .value {
-  background-color: #1663be;
-  display: inline-block;
-  height: 100%;
-}
-
-.Player2ManaBar {
-  height: 1.5em;
-  width: 100%;
-  background-color: #c9c9c9;
-  position: relative;
-  font-weight:bold;
-  float: right;
-
-}
-.Player2ManaBar:before {
-  content: attr(data-label);
-  font-size: 1em;
-  position: absolute;
-  text-align: center;
-  top: 5px;
-  left: 0;
-  right: 0;
-}
-.Player2ManaBar .value {
-  background-color: #1663be;
-  display: inline-block;
-  height: 100%;
-}
-
-.Player3ManaBar {
-  height: 1.5em;
-  width: 100%;
-  background-color: #c9c9c9;
-  position: relative;
-  font-weight:bold;
-  float: right;
-
-}
-.Player3ManaBar:before {
-  content: attr(data-label);
-  font-size: 1em;
-  position: absolute;
-  text-align: center;
-  top: 5px;
-  left: 0;
-  right: 0;
-}
-.Player3ManaBar .value {
-  background-color: #1663be;
-  display: inline-block;
-  height: 100%;
+.party_container {
+    width:100%;
+    display:flex;
+    position:relative;
+    min-height:8em;
 }
 
 .EnemyHealthBar {
   height: 1em;
   width: 100%;
-  background-color: #c9c9c9;
+  background-color: #dcdcdc;
   position: relative;
   font-weight:bold;
   float: left;
@@ -161,8 +98,242 @@ body{
   height: 100%;
 }
 
+.EnemyHealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.EnemyHealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.EnemyHealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player1HealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player1HealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player1HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player1HealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.Player1HealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.Player1HealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player1ManaBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player1ManaBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player1ManaBar .value {
+  background-color: #60b0f4;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player1ManaBar::-moz-progress-bar {
+  background: #60b0f4;
+}
+
+.Player1ManaBar::-webkit-progress-value {
+  background: #60b0f4;
+}
+
+.Player1ManaBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player2HealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player2HealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player2HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player2HealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.Player2HealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.Player2HealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player2ManaBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player2ManaBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player2ManaBar .value {
+  background-color: #60b0f4;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player2ManaBar::-moz-progress-bar {
+  background: #60b0f4;
+}
+
+.Player2ManaBar::-webkit-progress-value {
+  background: #60b0f4;
+}
+
+.Player2ManaBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player3HealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player3HealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player3HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player3HealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.Player3HealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.Player3HealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player3ManaBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player3ManaBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player3ManaBar .value {
+  background-color: #60b0f4;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player1ManaBar::-moz-progress-bar {
+  background: #60b0f4;
+}
+
+.Player3ManaBar::-webkit-progress-value {
+  background: #60b0f4;
+}
+
+.Player3ManaBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+
+
 .main_battle_div{
     display:flex;
+}
+
+.battleinfotextwrapper {
+  font-size:0.8em;
 }
 
 .player1_battle_info_div {
@@ -170,8 +341,7 @@ body{
     width:33.3%;
     float:left;
     flex: 1;
-    min-height: 10em;
-    overflow: hidden;
+    visibility: hidden;
 }
 
 .player1_battle_info_left_div {
@@ -179,8 +349,6 @@ body{
     width:33.3%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
 
 }
 
@@ -189,8 +357,6 @@ body{
     width:33.3%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
 
 }
 
@@ -199,8 +365,6 @@ body{
     width:31.9%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
 
 }
 
@@ -209,8 +373,8 @@ body{
     width:33.3%;
     float:left;
     flex: 1;
-    min-height: 10em;
-    overflow: hidden;
+    visibility: hidden;
+
 }
 
 .player2_battle_info_left_div {
@@ -218,8 +382,7 @@ body{
     width:33.3%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
+
 }
 
 .player2_battle_info_center_div {
@@ -227,8 +390,7 @@ body{
     width:33.3%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
+
 }
 
 .player2_battle_info_right_div {
@@ -236,8 +398,7 @@ body{
     width:31.9%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
+
 }
 
 .player3_battle_info_div {
@@ -245,8 +406,7 @@ body{
     width:33.3%;
     float:left;
     flex: 1;
-    min-height: 10em;
-    overflow: hidden;
+    visibility: hidden;
 }
 
 .player3_battle_info_left_div {
@@ -254,8 +414,7 @@ body{
     width:33.3%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
+
 }
 
 .player3_battle_info_center_div {
@@ -263,8 +422,7 @@ body{
     width:33.3%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
+
 }
 
 .player3_battle_info_right_div {
@@ -272,9 +430,118 @@ body{
     width:31.9%;
     float:left;
     height:100%;
-    min-height: 10em;
-    overflow: hidden;
+
 }
+
+
+.TankEXPBar {
+  height: 0.5em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+  bottom:0;
+
+}
+.TankEXPBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+.TankEXPBar .value {
+  background-color: #681DA8;
+  display: inline-block;
+  height: 100%;
+}
+
+.TankEXPBar::-moz-progress-bar {
+  background: #681DA8;
+}
+
+.TankEXPBar::-webkit-progress-value {
+  background: #681DA8;
+}
+
+.TankEXPBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.HealerEXPBar {
+  height: 0.5em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+  bottom:0;
+
+}
+.HealerEXPBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+.HealerEXPBar .value {
+  background-color: #681DA8;
+  display: inline-block;
+  height: 100%;
+}
+
+.HealerEXPBar::-moz-progress-bar {
+  background: #681DA8;
+}
+
+.HealerEXPBar::-webkit-progress-value {
+  background: #681DA8;
+}
+
+.HealerEXPBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.DPSExpBar {
+  height: 0.5em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+  bottom:0;
+
+}
+.DPSExpBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+.DPSExpBar .value {
+  background-color: #681DA8;
+  display: inline-block;
+  height: 100%;
+}
+
+.DPSExpBar::-moz-progress-bar {
+  background: #681DA8;
+}
+
+.DPSExpBar::-webkit-progress-value {
+  background: #681DA8;
+}
+
+.DPSExpBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
 
 
 .battle_enemy_div {
@@ -305,7 +572,11 @@ body{
     height:100%;
 }
 
-.collect_loot_div {
+.SelectZoneBeforeText{
+    display: block;
+}
+
+.zone_selection_div {
     border:1px solid gray;
     width:33.3%;
     float:left;
@@ -314,13 +585,26 @@ body{
 }
 
 .party_container {
-    bottom:30px;
+    bottom:2em;
     position:absolute;
-    width:99.8%;
-    min-height: 300px;
-    overflow: hidden;
 }
 
+.enemybattlevisibility {
+    visibility: hidden;
+}
+
+#ElwynnForestZoneBox {
+    width:6em;
+    height:2.5em;
+    background-color: white;
+
+}
+
+#WestFallZoneBox {
+    width:6em;
+    height:2.5em;
+    background-color: white;
+}
 
   p.clean {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
