@@ -15,6 +15,7 @@
 
 <body>
   <header>
+    <button id="healallbutton" onclick="healall()" style="position:absolute;">Heal all</button>
     <h1 id="GameTitleText" class="textwrapcenter">Hearth Idle</h1>
   </header>
 
@@ -26,10 +27,6 @@
       <div class="battle_enemy_center_div" style="border:1px solid gray">
 
         <button class="closecombatx enemybattlevisibility" style="margin:0;padding:0;position:absolute;right:0.5em; cursor:pointer; border:none;background-color: transparent;outline:none;" onclick="stopCombat()">&#10005;</button>
-        <div id="battle_enemy_loader_container_id">
-          <div class="battle_enemy_loader" id="loader">
-          </div>
-        </div>
 
         <p id="SelectZoneBeforeTextId" class="SelectZoneBeforeText" style="text-align:center;">
           Select a zone first!
@@ -48,12 +45,24 @@
       <br>
     </div>
     <div class="zone_selection_div">
-      <div id="ElwynnForestZoneBox" style="border:1px solid gray; cursor:pointer;" onclick="selectelwynnforestzone()">
-        <p style="font-size:0.8em;text-align:center;margin:auto">Elwynn Forest<br>(0-10)</p>
-      </div>
+      <div class=zonecontainers>
+        <div id="ElwynnForestZoneBox" style="border:1px solid gray; cursor:pointer;" onclick="selectelwynnforestzone()">
+          <p style="font-size:0.8em;text-align:center;margin:auto">Elwynn Forest<br>(1-50)</p>
+        </div>
       <br>
-      <div id="WestFallZoneBox" style="border:1px solid gray; cursor:pointer;" onclick="selectwestfallzone()">
-        <p style="font-size:0.8em;text-align:center;margin:auto;">West Fall<br>(10-20)</p>
+        <div id="WestFallZoneBox" style="border:1px solid gray; cursor:pointer;" onclick="selectwestfallzone()">
+          <p style="font-size:0.8em;text-align:center;margin:auto;">West Fall<br>(5-50)</p>
+        </div>
+      </div>
+
+      <div class=zonecontainers>
+        <div id="WetlandsZoneBox" style="border:1px solid gray; cursor:pointer;" onclick="selectwestfallzone()">
+          <p style="font-size:0.8em;text-align:center;margin:auto;">Wet lands<br>(10-50)</p>
+        </div>
+        <br>
+        <div id="BadLandsZoneBox" style="border:1px solid gray; cursor:pointer;" onclick="">
+          <p style="font-size:0.8em;text-align:center;margin:auto;">Bad lands<br>(15-50)</p>
+        </div>
       </div>
     </div>
 </div>

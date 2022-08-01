@@ -67,6 +67,9 @@ var membersActive = {
   inCombat: 0
 }
 
+//0=nozone 1=elwynn 2=westfall
+var selectedzone = 0;
+
 var loot = 0;
 
 var inCombat = 0;

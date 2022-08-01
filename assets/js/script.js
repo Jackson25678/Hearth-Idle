@@ -20,7 +20,7 @@ setInterval(
     document.getElementById("Player2HealingInfoText").innerHTML = "Healing: " + Healer.healing;
     document.getElementById("Player2ASInfoText").innerHTML = "Atk speed: " + Healer.attackspeed / 1000 + "s";
     document.getElementById("Player2DRInfoText").innerHTML = "Dmg reduction " + Healer.reduction;
-    document.getElementById("Player3RegenInfoText").innerHTML = "Regen: " + Healer.regen;
+    document.getElementById("Player2RegenInfoText").innerHTML = "Regen: " + Healer.regen;
     //DPS
     document.getElementById("Player3DamageInfoText").innerHTML = "Damage: " + DPS.damage;
     document.getElementById("Player3ASInfoText").innerHTML = "Atk speed: " + DPS.attackspeed / 1000 + "s";
@@ -31,6 +31,98 @@ setInterval(
     setExpBar();
   }, 1000);
 
+
+
+function updateMob(){
+
+  var randomelwynnenemy = Math.floor(Math.random() * ElwynnForestEnemies.length);
+  var randomwestfallenemy = Math.floor(Math.random() * WestFallEnemies.length);
+  var randomwetlandsenemy = Math.floor(Math.random() * WetLandsEnemies.length);
+
+  if(selectedzone == 1){
+    document.getElementById("SelectZoneBeforeTextId").innerHTML = ElwynnForestEnemies[randomelwynnenemy];
+    //Check which enemy spawned, then assign its values
+    if(randomelwynnenemy == 0){
+      ActiveEnemy = Kobold;
+    }
+    if(randomelwynnenemy == 1){
+      ActiveEnemy = Spider;
+    }
+    if(randomelwynnenemy == 2){
+      ActiveEnemy = Bear;
+    }
+    if(randomelwynnenemy == 3){
+      ActiveEnemy = Murloc;
+    }
+    if(randomelwynnenemy == 4){
+      ActiveEnemy = Wolf;
+    }
+  }
+
+  if(selectedzone == 2){
+    document.getElementById("SelectZoneBeforeTextId").innerHTML = WestFallEnemies[randomwestfallenemy];
+    //Check which enemy spawned, then assign its values
+    if(randomwestfallenemy == 0){
+      ActiveEnemy = Ghoul;
+    }
+    if(randomwestfallenemy == 1){
+      ActiveEnemy = Cow;
+    }
+    if(randomwestfallenemy == 2){
+      ActiveEnemy = Coyote;
+    }
+    if(randomwestfallenemy == 3){
+      ActiveEnemy = Slark;
+    }
+    if(randomwestfallenemy == 4){
+      ActiveEnemy = DustDevil;
+    }
+  }
+
+  if(selectedzone == 3){
+    document.getElementById("SelectZoneBeforeTextId").innerHTML = WetLandsEnemies[randomwetlandsenemy];
+    //Check which enemy spawned, then assign its values
+    if(randomwetlandsenemy == 0){
+      ActiveEnemy = CaveStalker;
+    }
+    if(randomwetlandsenemy == 1){
+      ActiveEnemy = FenDweller;
+    }
+    if(randomwetlandsenemy == 2){
+      ActiveEnemy = GnawBone;
+    }
+    if(randomwetlandsenemy == 3){
+      ActiveEnemy = CursedMarine;
+    }
+    if(randomwetlandsenemy == 4){
+      ActiveEnemy = FenLord;
+    }
+  }
+
+  if(selectedzone == 4){
+    document.getElementById("SelectZoneBeforeTextId").innerHTML = WestFallEnemies[randomwestfallenemy];
+    //Check which enemy spawned, then assign its values
+    if(randomelwynnenemy == 0){
+      ActiveEnemy = Ghoul;
+    }
+    if(randomelwynnenemy == 1){
+      ActiveEnemy = Cow;
+    }
+    if(randomelwynnenemy == 2){
+      ActiveEnemy = Coyote;
+    }
+    if(randomelwynnenemy == 3){
+      ActiveEnemy = Slark;
+    }
+    if(randomelwynnenemy == 4){
+      ActiveEnemy = DustDevil;
+    }
+  }
+
+
+}
+
+
 function addLoot(){
   //Tank
   //Elwynn
@@ -38,22 +130,32 @@ function addLoot(){
     if(randomelwynnenemy == 0){
       var copper = Math.floor(Math.random() * 5);
       User.copper += copper;
+      randomelwynnenemydrop = Math.floor(Math.random() * 'Kobold.loot'.length);
+      console.log(randomelwynnenemydrop);
       }
     if(randomelwynnenemy == 1){
       var copper = Math.floor(Math.random() * 5);
       User.copper += copper;
+      randomelwynnenemydrop = Math.floor(Math.random() * 'Spider.loot'.length);
+      console.log(randomelwynnenemydrop);
     }
     if(randomelwynnenemy == 2){
       var copper = Math.floor(Math.random() * 5);
       User.copper += copper;
+      randomelwynnenemydrop = Math.floor(Math.random() * 'Bear.loot'.length);
+      console.log(randomelwynnenemydrop);
     }
     if(randomelwynnenemy == 3){
       var copper = Math.floor(Math.random() * 5);
       User.copper += copper;
+      randomelwynnenemydrop = Math.floor(Math.random() * 'Murloc.loot'.length);
+      console.log(randomelwynnenemydrop);
     }
     if(randomelwynnenemy == 4){
       var copper = Math.floor(Math.random() * 5);
       User.copper += copper;
+      randomelwynnenemydrop = Math.floor(Math.random() * 'Wolf.loot'.length);
+      console.log(randomelwynnenemydrop);
     }
   }
 
@@ -96,6 +198,8 @@ function setHealthBar(){
   var tankhealthprogressbar = document.getElementById("Player1HealthBarId");
   var healerhealthprogressbar = document.getElementById("Player2HealthBarId");
   var dpshealthprogressbar = document.getElementById("Player3HealthBarId");
+
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
   tankhealthprogressbar.setAttribute("value", Tank.health);
   tankhealthprogressbar.setAttribute("max", Tank.maxhealth);
   tankhealthprogressbar.setAttribute("data-label", Tank.health + "/" + Tank.maxhealth);
@@ -107,6 +211,10 @@ function setHealthBar(){
   dpshealthprogressbar.setAttribute("value", DPS.health);
   dpshealthprogressbar.setAttribute("max", DPS.maxhealth);
   dpshealthprogressbar.setAttribute("data-label", DPS.health + "/" + DPS.maxhealth);
+
+  enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
+  enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
+  enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
 }
 
 //Select a member from an array list to choose which member will be attacked by an enemy randomly
@@ -163,15 +271,13 @@ function tankattackenemy(){
     enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
 
     if(ActiveEnemy.health <= 0){
+
       document.getElementById("SelectZoneBeforeTextId").innerHTML = "loading...";
-      setTimeout(startCombat, 600);
+      setTimeout(SendOutMembers(), 600);
       clearInterval(window.tankattackinterval);
       clearInterval(window.healerhealinterval);
       clearInterval(window.dpsattackinterval);
       clearInterval(window.enemyattackinterval);
-      enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
-      enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
-      enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
       var sharedExp = ActiveEnemy.expReward / membersActive.totalmembers;
       if(membersActive.tank == 1 && Tank.health > 0){
         Tank.exp += sharedExp;
@@ -182,9 +288,10 @@ function tankattackenemy(){
       if(membersActive.dps == 1 && DPS.health > 0){
         DPS.exp += sharedExp;
       }
-      checkForLevelUp()
+      checkForLevelUp();
       setExpBar();
-      addLoot()
+      addLoot();
+
     }
   }, Tank.attackspeed);
 }
@@ -193,7 +300,6 @@ function healerhealmember(){
 
   window.healerhealinterval = setInterval(() => {
     var needsHealed = Math.min(Tank.health, Healer.health, DPS.health);
-    console.log(needsHealed);
 
   }, Healer.attackspeed);
 }
@@ -215,14 +321,11 @@ function dpsattackenemy(){
 
     if(ActiveEnemy.health <= 0){
       document.getElementById("SelectZoneBeforeTextId").innerHTML = "loading...";
-      setTimeout(startCombat, 600);
+      setTimeout(SendOutMembers(), 600);
       clearInterval(window.tankattackinterval);
       clearInterval(window.healerhealinterval);
       clearInterval(window.dpsattackinterval);
       clearInterval(window.enemyattackinterval);
-      enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
-      enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
-      enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
       var sharedExp = ActiveEnemy.expReward / membersActive.totalmembers;
       if(membersActive.tank == 1 && Tank.health > 0){
         Tank.exp += sharedExp;
@@ -233,9 +336,11 @@ function dpsattackenemy(){
       if(membersActive.dps == 1 && DPS.health > 0){
         DPS.exp += sharedExp;
       }
-      checkForLevelUp()
+      checkForLevelUp();
       setExpBar();
-      addLoot()
+      addLoot();
+      SendOutMembers();
+
     }
   }, DPS.attackspeed);
 }
@@ -243,10 +348,49 @@ function dpsattackenemy(){
 //Function for selecting the elwynn forest zone button
 function selectelwynnforestzone(){
 
+  //1 means elwynn forest - refer to variables.js
+  selectedzone = 1;
   stopCombat();
-  memberSelected.tank = 0;
-  memberSelected.healer = 0;
-  memberSelected.dps = 0;
+
+  if(sendOutMemberBoxVisibility == 0){
+    sendOutMemberBoxVisibility = 1;
+    document.getElementById("SelectPartyMemberContainerId").style.visibility = "visible";
+    document.getElementById("SelectTank").style.visibility = "visible";
+    document.getElementById("SelectHealer").style.visibility = "visible";
+    document.getElementById("SelectDPS").style.visibility = "visible";
+
+  }else{
+    sendOutMemberBoxVisibility = 0;
+    document.getElementById("SelectPartyMemberContainerId").style.visibility = "hidden";
+    document.getElementById("SelectTank").style.visibility = "hidden";
+    document.getElementById("SelectHealer").style.visibility = "hidden";
+    document.getElementById("SelectDPS").style.visibility = "hidden";
+  }
+
+  //check if a member is in use already
+  if(membersActive.tank == 0){
+    document.getElementById("SelectTank").style.border = "initial";
+  }else{
+    document.getElementById("SelectTank").style.border = "1px solid red";
+  }
+  if(membersActive.healer == 0){
+    document.getElementById("SelectHealer").style.border = "initial";
+  }else{
+    document.getElementById("SelectHealer").style.border = "1px solid red";
+  }
+  if(membersActive.dps == 0){
+    document.getElementById("SelectDPS").style.border = "initial";
+  }else{
+    document.getElementById("SelectDPS").style.border = "1px solid red";
+  }
+
+}
+
+function selectwestfallzone(){
+
+  //2 means west fall - refer to variables.js
+  selectedzone = 2;
+  stopCombat();
   if(sendOutMemberBoxVisibility == 0){
     sendOutMemberBoxVisibility = 1;
     document.getElementById("SelectPartyMemberContainerId").style.visibility = "visible";
@@ -314,31 +458,22 @@ function SelectDPSMember(){
 
 function startCombat(){
 
+  clearInterval(window.tankattackinterval);
+  clearInterval(window.healerhealinterval);
+  clearInterval(window.dpsattackinterval);
+  clearInterval(window.enemyattackinterval);
   inCombat = 1;
-  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
   document.querySelectorAll(".enemybattlevisibility").forEach(a=>a.style.visibility = "visible");
-  document.getElementById("SelectZoneBeforeTextId").innerHTML = ElwynnForestEnemies[randomelwynnenemy];
   ActiveEnemy.health = ActiveEnemy.maxhealth;
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
   enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
   enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
   enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+  enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
 
-  //Check which enemy spawned, then assign its values
-  if(randomelwynnenemy == 0){
-    ActiveEnemy = Kobold;
-  }
-  if(randomelwynnenemy == 1){
-    ActiveEnemy = Spider;
-  }
-  if(randomelwynnenemy == 2){
-    ActiveEnemy = Bear;
-  }
-  if(randomelwynnenemy == 3){
-    ActiveEnemy = Murloc;
-  }
-  if(randomelwynnenemy == 4){
-    ActiveEnemy = Wolf;
-  }
+  updateMob();
+  setHealthBar();
+
 
   if(membersActive.tank == 1){
     tankattackenemy();
@@ -351,9 +486,7 @@ function startCombat(){
   }
 
   enemyrandomattack();
-  enemyhealthprogressbar.setAttribute("value", ActiveEnemy.health);
-  enemyhealthprogressbar.setAttribute("max", ActiveEnemy.maxhealth);
-  enemyhealthprogressbar.setAttribute("data-label", ActiveEnemy.health + "/" + ActiveEnemy.maxhealth);
+
 
 }
 function stopCombat(){
@@ -409,37 +542,83 @@ function SendOutMembers(){
   document.getElementById("SelectTank").style.visibility = "hidden";
   document.getElementById("SelectHealer").style.visibility = "hidden";
   document.getElementById("SelectDPS").style.visibility = "hidden";
-  document.getElementById("loader").style.display = "visible";
-  setExpBar();
+  var enemyhealthprogressbar = document.getElementById("EnemyHealthBarId");
   setHealthBar();
+  setExpBar();
+
 
   if(memberSelected.tank >= 1){
     membersActive.tank = 1;
     membersActive.totalmembers += 1;
     document.getElementById("player1_battle_info_div_id").style.visibility = "visible";
-    Tank.currentzone = 1;
+    //1 means elwynn forest zone
+    if(selectedzone == 1){
+      Tank.currentzone = 1;
+    }
+    //2 means westfall
+    if(selectedzone == 2){
+      Tank.currentzone = 2;
+    }
+    //3 means wetlands
+    if(selectedzone == 3){
+      Tank.currentzone = 3;
+    }
+    //4 means badlands
+    if(selectedzone == 4){
+      Tank.currentzone = 4;
+    }
+
   }
 
   if(memberSelected.healer >= 1){
     membersActive.healer = 1;
     membersActive.totalmembers += 1;
     document.getElementById("player2_battle_info_div_id").style.visibility = "visible";
-    Healer.currentzone = 1;
+    if(selectedzone == 1){
+      Healer.currentzone = 1;
+    }
+    //2 means westfall
+    if(selectedzone == 2){
+      Healer.currentzone = 2;
+    }
+    //3 means wetlands
+    if(selectedzone == 3){
+      Healer.currentzone = 3;
+    }
+    //4 means badlands
+    if(selectedzone == 4){
+      Healer.currentzone = 4;
+    }
   }
 
   if(memberSelected.dps >= 1){
     membersActive.dps = 1;
     membersActive.totalmembers += 1;
     document.getElementById("player3_battle_info_div_id").style.visibility = "visible";
-    DPS.currentzone = 1;
-
-
+    if(selectedzone == 1){
+      DPS.currentzone = 1;
+    }
+    //2 means westfall
+    if(selectedzone == 2){
+      DPS.currentzone = 2;
+    }
+    //3 means wetlands
+    if(selectedzone == 3){
+      DPS.currentzone = 3;
+    }
+    //4 means badlands
+    if(selectedzone == 4){
+      DPS.currentzone = 4;
+    }
   }
 
-  if(memberSelected.tank >= 1 || memberSelected.healer >= 1 || memberSelected.dps >= 1){
+  if (membersActive.tank == 1 || membersActive.healer == 1 || membersActive.dps == 1){
     document.getElementById("SelectZoneBeforeTextId").innerHTML = "loading...";
-    setTimeout(startCombat, 600);
+    let combatLoaderTimer = setTimeout(startCombat, 600);
+    setHealthBar();
+
   }
+
 
   if (membersActive.tank == 1){
     memberList.push("tank");
@@ -452,4 +631,6 @@ function SendOutMembers(){
   if (membersActive.dps == 1){
     memberList.push("dps");
   }
+
+
 }
