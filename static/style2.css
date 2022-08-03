@@ -11,3 +11,14 @@
 .bgbg {
     background-image: url('bg.png');
 }
+
+.forbg {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('forest.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.wetbg {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('wetlands.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

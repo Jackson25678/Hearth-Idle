@@ -25,31 +25,57 @@
 
 <body class='bgbg'>
  
-<div class='container text-light p-3'>
-  <div class='d-flex flex-row p-4 justify-content-evenly'>
-    
-      <a class='btn btn-primary' href={{url}}>Elwynn Forest (1-50)</a>
+<div class='container mt-4'>
+  
+  {% block mainbattle %}
 
+  <div class='d-flex flex-row justify-content-between pt-4'>
+
+
+        <div class="card forbg text-light mx-2" style="width: 18rem;">
+          <img class="card-img-top" >
+          <div class="card-body">
+            <h5 class="card-title">Elwynn Forest <br> (1-50)</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href={{url}}>Let's Go!!</a>
+          </div>
+        </div>
+
+        <div class="card mx-2" style="width: 18rem;">
+          <img class="card-img-top" >
+          <div class="card-body">
+            <h5 class="card-title">West Fall  <br> (5-50)</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href={{url2}}>Let's Go!!</a>
+          </div>
+        </div>
+      
+    
   
-  
-    <a class='btn btn-primary' href={{url2}}>West Fall  (5-50)</a>
+
+      <div class="card wetbg text-light mx-2" style="width: 18rem;">
+        <img class="card-img-top" >
+        <div class="card-body">
+          <h5 class="card-title">Wet lands <br> (10-50)</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href={{url3}}>Let's Go!!</a>
+        </div>
+      </div>
+
+      <div class="card mx-2" style="width: 18rem;">
+        <img class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Bad lands <br> (15-50)</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href={{url4}}>Let's Go!!</a>
+        </div>
+      </div>
     
   </div>
-  <div class='d-flex flex-row p-4 justify-content-evenly'>
-    <a class='btn btn-primary'  href={{url3}}>Wet lands  (10-50)</a>
-  
-  
-   
-    <a class='btn btn-primary'  href={{url4}}>Bad lands  (15-50)</a>
-   
-  </div>
+
+  {% endblock mainbattle  %}
 </div>
 
-
-{% block mainbattle %}
-
-  
-{% endblock mainbattle  %}
 
 
 </html>
