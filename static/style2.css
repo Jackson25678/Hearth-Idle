@@ -1,0 +1,13 @@
+.bgnav {
+    background-image: url('OIP.png');
+}
+.title {
+    font-family: fantasy;
+    --bs-link-color: rgb(231, 223, 176);
+    --bs-link-hover-color: white;
+    font-size: 100px;
+}
+
+.bgbg {
+    background-image: url('bg.png');
+}
