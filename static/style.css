@@ -1,0 +1,717 @@
+body {
+    margin:0 auto;
+    padding:0;
+    overflow-x:hidden;
+}
+
+.exp_bar_container{
+  width:100%;
+  top: 12em;
+  position: relative;
+  display:flex;
+
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid gray; /* Blue */
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  animation: spin 2s linear infinite;
+  visibility: hidden;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.textwrapcenter {
+    text-align:center;
+}
+
+.btnwrapcenter {
+    text-align:center;
+    display:flex;
+    justify-content: center;
+}
+
+progress {
+  text-align:center;
+}
+
+.progressbarwrapcenter {
+    text-align:center;
+}
+
+#CollectLootText {
+    text-align:center;
+}
+
+.SelectPartyMemberContainer {
+    visibility: hidden;
+    border:1px solid gray;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    margin-top:1em;
+    padding:1em;
+    z-index: 10;
+}
+
+.SelectPartyMember {
+    text-align:center;
+    display:flex;
+    display:flex;
+    padding:1em;
+}
+
+.party_container {
+    width:100%;
+    display:flex;
+    position:relative;
+    min-height:8em;
+}
+
+.EnemyHealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.EnemyHealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.EnemyHealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.EnemyHealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.EnemyHealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.EnemyHealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player1HealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player1HealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player1HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player1HealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.Player1HealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.Player1HealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player1ManaBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player1ManaBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player1ManaBar .value {
+  background-color: #60b0f4;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player1ManaBar::-moz-progress-bar {
+  background: #60b0f4;
+}
+
+.Player1ManaBar::-webkit-progress-value {
+  background: #60b0f4;
+}
+
+.Player1ManaBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player2HealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player2HealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player2HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player2HealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.Player2HealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.Player2HealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player2ManaBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player2ManaBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player2ManaBar .value {
+  background-color: #60b0f4;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player2ManaBar::-moz-progress-bar {
+  background: #60b0f4;
+}
+
+.Player2ManaBar::-webkit-progress-value {
+  background: #60b0f4;
+}
+
+.Player2ManaBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player3HealthBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player3HealthBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player3HealthBar .value {
+  background-color: #05a000;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player3HealthBar::-moz-progress-bar {
+  background: #05a000;
+}
+
+.Player3HealthBar::-webkit-progress-value {
+  background: #05a000;
+}
+
+.Player3HealthBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.Player3ManaBar {
+  height: 1em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+
+}
+.Player3ManaBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 15%;
+  left: 0;
+  right: 0;
+}
+.Player3ManaBar .value {
+  background-color: #60b0f4;
+  display: inline-block;
+  height: 100%;
+}
+
+.Player1ManaBar::-moz-progress-bar {
+  background: #60b0f4;
+}
+
+.Player3ManaBar::-webkit-progress-value {
+  background: #60b0f4;
+}
+
+.Player3ManaBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+
+
+.main_battle_div{
+    display:flex;
+}
+
+.battleinfotextwrapper {
+  font-size:0.8em;
+}
+
+.player1_battle_info_div {
+
+    width:33.3%;
+    float:left;
+    flex: 1;
+    visibility: hidden;
+}
+
+.player1_battle_info_left_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player1_battle_info_center_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player1_battle_info_right_div {
+    position: relative;
+    width:31.9%;
+    float:left;
+    height:100%;
+
+}
+
+.player2_battle_info_div {
+
+    width:33.3%;
+    float:left;
+    flex: 1;
+    visibility: hidden;
+
+}
+
+.player2_battle_info_left_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player2_battle_info_center_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player2_battle_info_right_div {
+    position: relative;
+    width:31.9%;
+    float:left;
+    height:100%;
+
+}
+
+.player3_battle_info_div {
+
+    width:33.3%;
+    float:left;
+    flex: 1;
+    visibility: hidden;
+}
+
+.player3_battle_info_left_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player3_battle_info_center_div {
+    position: relative;
+    width:33.3%;
+    float:left;
+    height:100%;
+
+}
+
+.player3_battle_info_right_div {
+    position: relative;
+    width:31.9%;
+    float:left;
+    height:100%;
+
+}
+
+
+.TankEXPBar {
+  height: 0.5em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+  bottom:0;
+
+}
+.TankEXPBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+.TankEXPBar .value {
+  background-color: #681DA8;
+  display: inline-block;
+  height: 100%;
+}
+
+.TankEXPBar::-moz-progress-bar {
+  background: #681DA8;
+}
+
+.TankEXPBar::-webkit-progress-value {
+  background: #681DA8;
+}
+
+.TankEXPBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.HealerEXPBar {
+  height: 0.5em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+  bottom:0;
+
+}
+.HealerEXPBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+.HealerEXPBar .value {
+  background-color: #681DA8;
+  display: inline-block;
+  height: 100%;
+}
+
+.HealerEXPBar::-moz-progress-bar {
+  background: #681DA8;
+}
+
+.HealerEXPBar::-webkit-progress-value {
+  background: #681DA8;
+}
+
+.HealerEXPBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+.DPSExpBar {
+  height: 0.5em;
+  width: 100%;
+  background-color: #dcdcdc;
+  position: relative;
+  font-weight:bold;
+  float: left;
+  bottom:0;
+
+}
+.DPSExpBar:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+.DPSExpBar .value {
+  background-color: #681DA8;
+  display: inline-block;
+  height: 100%;
+}
+
+.DPSExpBar::-moz-progress-bar {
+  background: #681DA8;
+}
+
+.DPSExpBar::-webkit-progress-value {
+  background: #681DA8;
+}
+
+.DPSExpBar::-webkit-progress-bar {
+  background: #dcdcdc;
+}
+
+
+
+.battle_enemy_div {
+    width:33.3%;
+    float:left;
+    flex: 1;
+
+}
+
+.battle_enemy_left_div{
+    float:left;
+    position:relative;
+    width:33.3%;
+    height:100%;
+}
+
+.battle_enemy_center_div{
+    float:left;
+    position:relative;
+    width:33.3%;
+    height:100%;
+}
+
+.battle_enemy_right_div{
+    float:left;
+    position:relative;
+    width:31.9%;
+    height:100%;
+}
+
+.SelectZoneBeforeText{
+    display: block;
+}
+
+.zone_selection_div {
+    border:1px solid gray;
+    width:33.3%;
+    float:left;
+    flex: 1;
+    padding:0.5em;
+}
+
+.party_container {
+    bottom:2em;
+    position:absolute;
+}
+
+.enemybattlevisibility {
+    visibility: hidden;
+}
+
+.zonecontainers{
+  float:left;
+  margin:0.2em;
+}
+
+#ElwynnForestZoneBox {
+    width:6em;
+    height:2em;
+    background-color: white;
+
+
+
+}
+
+#WestFallZoneBox {
+    width:6em;
+    height:2em;
+    background-color: white;
+
+
+}
+
+#WetlandsZoneBox {
+    width:6em;
+    height:2em;
+    background-color: white;
+
+
+}
+
+#BadlandsZoneBox {
+    width:6em;
+    height:2em;
+    background-color: white;
+
+
+}
+
+
+  p.clean {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11;
+    margin-bottom: 0;
+    margin-top: 0px;
+
+}
+
+p.clean2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11;
+    margin-bottom: 0;
+    margin-top: 0px;
+
+}
+
+p.clean3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11;
+    margin-bottom: 3px;
+    margin-top: 0px;
+
+}
+
+.button {
+    border: 1px solid #1a1a1a;
+    background: #666666;
+
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cccccc));
+    background: -webkit-linear-gradient(top, #ffffff, #888888);
+    background: -moz-linear-gradient(top, #ffffff, #888888);
+    background: -ms-linear-gradient(top, #ffffff, #888888);
+    background: -o-linear-gradient(top, #ffffff, #888888);
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #888888 100%);
+
+    padding: 12.5px 25px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+    text-shadow: #cccccc 0 1px 0;
+    color: #000000;
+    font-size: 16px;
+    font-family: helvetica, serif;
+    text-decoration: none;
+    vertical-align: middle;
+    outline: none;
+    }
+
+ .button:hover {
+    border: 1px solid #898989;
+    text-shadow: #d4d4d4 0 1px 0;
+    background: #666666;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#666666));
+    background: -webkit-linear-gradient(top, #ffffff, #666666);
+    background: -moz-linear-gradient(top, #ffffff, #666666);
+    background: -ms-linear-gradient(top, #ffffff, #666666);
+    background: -o-linear-gradient(top, #ffffff, #666666);
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #666666 100%);
+    color: #000000;
+    }
+
+ .button:active {
+    text-shadow: #bfbfbf 0 1px 0;
+    border: 1px solid #2e2e2e;
+
+    background: #d9d9d9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#595959), to(#616161));
+    background: -webkit-linear-gradient(top, #595959, #d9d9d9);
+    background: -moz-linear-gradient(top, #595959, #d9d9d9);
+    background: -ms-linear-gradient(top, #595959, #d9d9d9);
+    background: -o-linear-gradient(top, #595959, #d9d9d9);
+    background-image: -ms-linear-gradient(top, #595959 0%, #d9d9d9 100%);
+
+    color: #000000;
+    }
+
+ .button:disabled{
+    opacity: 0.6;
+    border: 1px solid #ffffff;
+ }
